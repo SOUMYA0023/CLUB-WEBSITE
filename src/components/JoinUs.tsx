@@ -1,10 +1,11 @@
 import React from 'react';
 import { Users, Lightbulb, Code, Heart, ArrowRight } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useNavigate } from 'react-router-dom';
 
 const JoinUs: React.FC = () => {
   const [ref, isVisible] = useScrollAnimation();
-
+  const navigate = useNavigate();
   const benefits = [
     {
       icon: Code,
@@ -74,7 +75,7 @@ const JoinUs: React.FC = () => {
               return (
                 <div
                   key={index}
-                  className={`text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl transform transition-all duration-500 hover:scale-105 ${
+                  className={`text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl transform transition-all duration-300 hover:scale-105 ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                   }`}
                   style={{ transitionDelay: `${index * 100}ms` }}
@@ -102,7 +103,7 @@ const JoinUs: React.FC = () => {
               {departments.map((dept, index) => (
                 <div
                   key={index}
-                  className={`bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 transform transition-all duration-500 hover:scale-105 hover:shadow-xl ${
+                  className={`bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 transform transition-all duration-300 hover:scale-105 hover:shadow-xl ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                   }`}
                   style={{ transitionDelay: `${index * 150}ms` }}
@@ -129,7 +130,7 @@ const JoinUs: React.FC = () => {
           </div>
 
           {/* Recruitment Process */}
-          <div className="bg-gradient-to-r from-blue-900 to-purple-600 rounded-xl p-8 mb-16 text-white">
+          <div className="bg-gradient-to-r from-blue-900 to-purple-600 rounded-xl p-8 mb-16 text-white hover:scale-110 transition duration-300">
             <h3 className="text-3xl font-bold text-center mb-8">
               Recruitment Process
             </h3>
@@ -174,12 +175,12 @@ const JoinUs: React.FC = () => {
                 Applications are open for the 2024 recruitment cycle. Don't miss your chance 
                 to be part of something amazing!
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center"
+              onClick={() => navigate('/recruitment-form')}>
                 <a
-                  href="https://forms.google.com/intellects-recruitment"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 px-8 py-4 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition-colors duration-200 text-lg font-semibold"
+                  className="inline-flex items-center space-x-2 px-8 py-4 bg-white text-blue-900 rounded-lg hover:bg-blue-900 hover:text-white   transition-colors duration-200 text-lg font-semibold"
                 >
                   <span>Apply Now</span>
                   <ArrowRight className="h-5 w-5" />

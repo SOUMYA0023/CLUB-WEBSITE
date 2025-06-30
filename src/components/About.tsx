@@ -30,7 +30,7 @@ const About: React.FC = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
             <div className="space-y-8">
-              <div className="bg-blue-50 dark:bg-blue-900/20 p-8 rounded-xl">
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-8 rounded-xl hover:scale-110 transition duration-300 ">
                 <div className="flex items-center mb-4">
                   <Target className="h-8 w-8 text-blue-900 dark:text-blue-400 mr-3" />
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Our Mission</h3>
@@ -42,7 +42,7 @@ const About: React.FC = () => {
                 </p>
               </div>
 
-              <div className="bg-purple-50 dark:bg-purple-900/20 p-8 rounded-xl">
+              <div className="bg-purple-50 dark:bg-purple-900/20 p-8 rounded-xl hover:scale-110 transition duration-300">
                 <div className="flex items-center mb-4">
                   <Eye className="h-8 w-8 text-purple-600 mr-3" />
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Our Vision</h3>
@@ -56,7 +56,7 @@ const About: React.FC = () => {
             </div>
 
             <div className="space-y-8">
-              <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl">
+              <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl hover:scale-110 transition duration-300">
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">What We Do</h3>
                 <ul className="space-y-3 text-gray-700 dark:text-gray-300">
                   <li className="flex items-start">
@@ -82,7 +82,7 @@ const About: React.FC = () => {
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-r from-blue-900 to-purple-600 p-8 rounded-xl text-white">
+              <div className="bg-gradient-to-r from-blue-900 to-purple-600 p-8 rounded-xl text-white hover:scale-110 transition duration-300">
                 <h3 className="text-2xl font-bold mb-4">Our Impact</h3>
                 <p className="leading-relaxed">
                   Over the years, INTELLECTS has been instrumental in shaping careers, 
@@ -97,7 +97,7 @@ const About: React.FC = () => {
             {stats.map((stat, index) => {
               const Icon = stat.icon;
               return (
-                <div key={index} className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
+                <div key={index} className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:scale-110 transition duration-300">
                   <Icon className="h-10 w-10 text-blue-900 dark:text-blue-400 mx-auto mb-4" />
                   <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
                     {stat.value}

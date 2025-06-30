@@ -65,7 +65,7 @@ const Achievements: React.FC = () => {
   return (
     <section id="achievements" className="py-20 bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div ref={ref} className={`transition-all duration-1000 ${
+        <div ref={ref} className={`transition-all duration-300 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           <div className="text-center mb-16">
@@ -84,10 +84,10 @@ const Achievements: React.FC = () => {
               return (
                 <div
                   key={achievement.id}
-                  className={`bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform transition-all duration-500 hover:scale-105 hover:shadow-xl ${
-                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                  className={`bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform transition-all duration-500 hover:scale-110 hover:shadow-xl ${
+                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-40'
                   }`}
-                  style={{ transitionDelay: `${index * 100}ms` }}
+                  // style={{ transitionDelay: `${index * 10}ms` }}
                 >
                   <div className="flex items-center mb-4">
                     <div className="p-3 bg-gray-100 dark:bg-gray-700 rounded-lg mr-4">
@@ -114,7 +114,7 @@ const Achievements: React.FC = () => {
           </div>
 
           <div className="mt-16 text-center">
-            <div className="bg-gradient-to-r from-blue-900 to-purple-600 rounded-xl p-8 text-white">
+            <div className="bg-gradient-to-r from-blue-900 to-purple-600 rounded-xl p-8 text-white hover:scale-105 transition duration-300">
               <h3 className="text-2xl font-bold mb-4">
                 Ready to Be Part of Our Success Story?
               </h3>
@@ -128,7 +128,7 @@ const Achievements: React.FC = () => {
                     joinSection.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
-                className="px-8 py-3 bg-white text-blue-900 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200"
+                className="px-8 py-3 bg-white text-blue-900 rounded-lg font-semibold hover:bg-blue-900 hover:text-white transition-colors duration-200"
               >
                 Join Our Community
               </button>

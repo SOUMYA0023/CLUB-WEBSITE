@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { User, Mail, Phone, Code, Calendar, FileText, Send, CheckCircle, AlertCircle } from 'lucide-react';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+console.log("Backend URL:", backendUrl);
 
 interface FormData {
   fullName: string;
@@ -93,7 +96,7 @@ const Recruitment: React.FC = () => {
    const handleSubmit = async () => {
     if (validateForm()) {
       try {
-        const response = await fetch("http://localhost:3000/", {
+        const response = await fetch("https://intellects-backend-1.onrender.com/", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

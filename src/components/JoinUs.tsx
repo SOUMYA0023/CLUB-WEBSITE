@@ -172,7 +172,7 @@ const JoinUs: React.FC = () => {
                 Ready to Get Started?
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mb-6">
-                Applications are open for the 2024 recruitment cycle. Don't miss your chance 
+                Applications are open for the 2025 recruitment cycle. Don't miss your chance 
                 to be part of something amazing!
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center"

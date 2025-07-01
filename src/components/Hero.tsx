@@ -50,17 +50,17 @@ const Hero: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="flex flex-col items-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:scale-110 transition duration-300">
               <Users className="h-12 w-12 text-blue-900 dark:text-blue-400 mb-4" />
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">500+</h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">50+</h3>
               <p className="text-gray-600 dark:text-gray-300">Active Members</p>
             </div>
             <div className="flex flex-col items-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:scale-110 transition duration-300">
               <Code className="h-12 w-12 text-purple-600 mb-4" />
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">50+</h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">10+</h3>
               <p className="text-gray-600 dark:text-gray-300">Projects Completed</p>
             </div>
             <div className="flex flex-col items-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:scale-110 transition duration-300">
               <Trophy className="h-12 w-12 text-yellow-500 mb-4" />
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">25+</h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">7+</h3>
               <p className="text-gray-600 dark:text-gray-300">Awards Won</p>
             </div>
           </div>

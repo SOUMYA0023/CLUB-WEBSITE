@@ -18,6 +18,7 @@ interface FormData {
   availability: string;
   github: string;
   linkedin: string;
+  domain:string;
 }
 
 const Recruitment: React.FC = () => {
@@ -34,7 +35,8 @@ const Recruitment: React.FC = () => {
     motivation: '',
     availability: '',
     github: '',
-    linkedin: ''
+    linkedin: '',
+    domain:''
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -86,6 +88,7 @@ const Recruitment: React.FC = () => {
     else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
     if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
     if (!formData.year) newErrors.year = 'Academic year is required';
+    if (!formData.domain) newErrors.domain = 'Domain is required';
     if (!formData.branch.trim()) newErrors.branch = 'Branch is required';
     if (!formData.motivation.trim()) newErrors.motivation = 'Motivation is required';
 

@@ -93,7 +93,7 @@ const Recruitment: React.FC = () => {
    const handleSubmit = async () => {
     if (validateForm()) {
       try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycby3_J9cmbanjdZ6Jb82R0BJnYU4LH9MCV1F-gWtQtno-YcyWAJVB9ZrwtEHBTUj2hcogQ/exec', {
+        const response = await fetch("http://localhost:3000/", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

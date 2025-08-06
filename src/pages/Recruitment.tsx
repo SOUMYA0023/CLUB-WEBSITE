@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { User, Mail, Phone, Code, Calendar, FileText, Send, CheckCircle, AlertCircle, Link } from 'lucide-react';
 
 // Use the VITE_BACKEND_URL environment variable, with a fallback
+// 
+// This is used to connect to the backend API for form submission
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 interface FormData {

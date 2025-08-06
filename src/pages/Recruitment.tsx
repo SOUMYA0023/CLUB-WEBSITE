@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { User, Mail, Phone, Code, Calendar, FileText, Send, CheckCircle, AlertCircle } from 'lucide-react';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+console.log("Backend URL:", backendUrl);
 
 interface FormData {
   fullName: string;
@@ -15,6 +18,7 @@ interface FormData {
   availability: string;
   github: string;
   linkedin: string;
+  domain:string;
 }
 
 const Recruitment: React.FC = () => {
@@ -31,7 +35,8 @@ const Recruitment: React.FC = () => {
     motivation: '',
     availability: '',
     github: '',
-    linkedin: ''
+    linkedin: '',
+    domain:''
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -83,6 +88,7 @@ const Recruitment: React.FC = () => {
     else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
     if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
     if (!formData.year) newErrors.year = 'Academic year is required';
+    if (!formData.domain) newErrors.domain = 'Domain is required';
     if (!formData.branch.trim()) newErrors.branch = 'Branch is required';
     if (!formData.motivation.trim()) newErrors.motivation = 'Motivation is required';
 
@@ -93,7 +99,7 @@ const Recruitment: React.FC = () => {
    const handleSubmit = async () => {
     if (validateForm()) {
       try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycby3_J9cmbanjdZ6Jb82R0BJnYU4LH9MCV1F-gWtQtno-YcyWAJVB9ZrwtEHBTUj2hcogQ/exec', {
+        const response = await fetch("https://intellects-backend.onrender.com/", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -257,6 +263,25 @@ const Recruitment: React.FC = () => {
                 className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                 placeholder="https://linkedin.com/yourusername"
               />
+            </div>
+
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-700">Domain *</label>
+              <select
+                name="domain"
+                value={formData.domain}
+                onChange={handleInputChange}
+                className={`w-full px-4 py-3 border-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all ${
+                  errors.domain ? 'border-red-500' : 'border-gray-300'
+                }`}
+              >
+                <option value="">Select your year</option>
+                <option value="technical">Technical</option>
+                <option value="social media">Social Media</option>
+                <option value="creative and content">Content and Creative</option>
+                <option value="event management">Event Management</option>
+              </select>
+              {errors.domain && <p className="text-red-500 text-sm flex items-center"><AlertCircle className="w-4 h-4 mr-1" />{errors.domain}</p>}
             </div>
 
             {/* Technical Skills */}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Users, MapPin, Clock } from 'lucide-react';
+import { Calendar, Users} from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { events } from '../data/eventsData';
 
@@ -9,13 +9,6 @@ const Events: React.FC = () => {
 
   const filteredEvents = events.filter(event => event.type === activeTab);
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
 
   return (
     <section id="events" className="py-20 bg-white dark:bg-gray-900">
@@ -98,7 +91,7 @@ const Events: React.FC = () => {
                   <div className="flex flex-wrap gap-4 text-sm text-gray-500 dark:text-gray-400">
                     <div className="flex items-center">
                       <Calendar className="h-4 w-4 mr-2" />
-                      {formatDate(event.date)}
+                      {event.date}
                     </div>
                     {event.participants && (
                       <div className="flex items-center">

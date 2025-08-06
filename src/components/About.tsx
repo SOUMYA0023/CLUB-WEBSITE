@@ -6,10 +6,10 @@ const About: React.FC = () => {
   const [ref, isVisible] = useScrollAnimation();
 
   const stats = [
-    { label: 'Years of Excellence', value: '8+', icon: Target },
-    { label: 'Technical Domains', value: '12', icon: Zap },
-    { label: 'Industry Partners', value: '15+', icon: Heart },
-    { label: 'Alumni Network', value: '2000+', icon: Eye }
+    { label: 'Years of Excellence', value: '3+', icon: Target },
+    { label: 'Technical Domains', value: '8', icon: Zap },
+    { label: 'Industry Partners', value: '2+', icon: Heart },
+    { label: 'Alumni Network', value: '20+', icon: Eye }
   ];
 
   return (

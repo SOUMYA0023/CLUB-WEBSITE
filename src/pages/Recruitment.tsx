@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { User, Mail, Phone, Code, Calendar, FileText, Send, CheckCircle, AlertCircle } from 'lucide-react';
-const backendUrl = import.meta.env.VITE_BACKEND_URL;
+import { User, Mail, Phone, Code, Calendar, FileText, Send, CheckCircle, AlertCircle, Link } from 'lucide-react';
 
-console.log("Backend URL:", backendUrl);
+// Use the VITE_BACKEND_URL environment variable, with a fallback
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 interface FormData {
   fullName: string;
@@ -19,6 +19,7 @@ interface FormData {
   github: string;
   linkedin: string;
   domain:string;
+  portfolioLink: string; // New field for portfolio/work samples
 }
 
 const Recruitment: React.FC = () => {
@@ -36,22 +37,30 @@ const Recruitment: React.FC = () => {
     availability: '',
     github: '',
     linkedin: '',
-    domain:''
+    domain:'',
+    portfolioLink: '' // Initialize new field
   });
 
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Partial<FormData>>({});
 
+  // Expanded skill options to include non-technical skills
   const skillOptions = [
     'JavaScript', 'Python', 'Java', 'C++', 'React', 'Node.js', 
     'Machine Learning', 'Data Science', 'Web Development', 'Mobile Development',
-    'Cybersecurity', 'Cloud Computing', 'DevOps', 'UI/UX Design'
+    'Cybersecurity', 'Cloud Computing', 'DevOps', 'UI/UX Design',
+    'Content Creation', 'Graphic Design', 'Video Editing', 'Social Media Management',
+    'Community Management', 'Event Planning', 'Marketing Strategy', 'Copywriting',
+    'Public Relations', 'Communication', 'Team Leadership'
   ];
 
+  // Expanded interest options to include non-technical interests
   const interestOptions = [
     'Web Development', 'Mobile Apps', 'AI/ML', 'Data Analytics',
     'Cybersecurity', 'Cloud Technologies', 'IoT', 'Blockchain',
-    'Game Development', 'AR/VR', 'Robotics', 'Open Source'
+    'Game Development', 'AR/VR', 'Robotics', 'Open Source',
+    'Content Creation', 'Digital Marketing', 'Event Management', 'Community Building',
+    'Creative Writing', 'Graphic Design', 'Video Production', 'Public Speaking', 'Leadership'
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -96,27 +105,28 @@ const Recruitment: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-   const handleSubmit = async () => {
+  const handleSubmit = async () => {
     if (validateForm()) {
       try {
-        const response = await fetch("https://intellects-backend.onrender.com/", {
+        const response = await fetch(backendUrl, { // Using backendUrl here
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(formData)
-          
         });
         const result = await response.json();
         if (result.result === 'success') {
           setSubmitted(true);
         } else {
-          alert("Submission failed. Please try again.");
+          // Using a custom message box instead of alert()
+          console.error("Submission failed:", result);
+          alert("Submission failed. Please try again."); // Fallback to alert for now, ideally a custom modal
         }
       } catch (error) {
         console.log(formData);
         console.error("Error submitting form:", error);
-        alert("There was an error. Please try again.");
+        alert("There was an error. Please try again."); // Fallback to alert for now, ideally a custom modal
       }
     }
   };
@@ -140,7 +150,7 @@ const Recruitment: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 p-4 font-inter">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
@@ -254,7 +264,7 @@ const Recruitment: React.FC = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">Linkedin Profile</label>
+              <label className="block text-sm font-medium text-gray-700">LinkedIn Profile</label>
               <input
                 type="url"
                 name="linkedin"
@@ -262,6 +272,19 @@ const Recruitment: React.FC = () => {
                 onChange={handleInputChange}
                 className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                 placeholder="https://linkedin.com/yourusername"
+              />
+            </div>
+
+            {/* New field for Portfolio/Work Sample Link */}
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-700">Portfolio/Work Sample Link</label>
+              <input
+                type="url"
+                name="portfolioLink"
+                value={formData.portfolioLink}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                placeholder="e.g., Behance, personal website, drive link"
               />
             </div>
 
@@ -275,7 +298,7 @@ const Recruitment: React.FC = () => {
                   errors.domain ? 'border-red-500' : 'border-gray-300'
                 }`}
               >
-                <option value="">Select your year</option>
+                <option value="">Select your preferred domain</option>
                 <option value="technical">Technical</option>
                 <option value="social media">Social Media</option>
                 <option value="creative and content">Content and Creative</option>
@@ -284,13 +307,13 @@ const Recruitment: React.FC = () => {
               {errors.domain && <p className="text-red-500 text-sm flex items-center"><AlertCircle className="w-4 h-4 mr-1" />{errors.domain}</p>}
             </div>
 
-            {/* Technical Skills */}
+            {/* Skills & Expertise (formerly Technical Skills) */}
             <div className="md:col-span-2">
               <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
                 <Code className="w-6 h-6 mr-2 text-blue-600" />
-                Technical Skills
+                Skills & Expertise
               </h2>
-              <p className="text-gray-600 mb-4">Select all the technologies you're familiar with:</p>
+              <p className="text-gray-600 mb-4">Select all the skills you're familiar with:</p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                 {skillOptions.map((skill) => (
                   <button
@@ -299,7 +322,7 @@ const Recruitment: React.FC = () => {
                     onClick={() => handleSkillToggle(skill)}
                     className={`px-3 py-2 rounded-lg border-2 transition-all text-sm font-medium ${
                       formData.skills.includes(skill)
-                        ? 'bg-blue-600 text-white border-blue-600 transform'
+                        ? 'bg-blue-600 text-white border-blue-600 transform scale-105'
                         : 'bg-white text-gray-700 border-gray-300 hover:border-blue-400'
                     }`}
                   >
@@ -325,7 +348,7 @@ const Recruitment: React.FC = () => {
               </select>
             </div>
 
-            {/* Projects */}
+            {/* Projects & Achievements (updated placeholder) */}
             <div className="md:col-span-2 space-y-2">
               <label className="block text-sm font-medium text-gray-700">Projects & Achievements</label>
               <textarea
@@ -334,17 +357,17 @@ const Recruitment: React.FC = () => {
                 onChange={handleInputChange}
                 rows={4}
                 className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
-                placeholder="Tell us about your projects, hackathons, competitions, or any technical achievements..."
+                placeholder="Tell us about your projects, hackathons, events organized, content created, or any relevant achievements..."
               />
             </div>
 
-            {/* Interests */}
+            {/* Areas of Interest & Focus (formerly Areas of Interest) */}
             <div className="md:col-span-2">
               <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
                 <FileText className="w-6 h-6 mr-2 text-blue-600" />
-                Areas of Interest
+                Areas of Interest & Focus
               </h2>
-              <p className="text-gray-600 mb-4">What areas of technology interest you the most?</p>
+              <p className="text-gray-600 mb-4">What areas of technology or club activities interest you the most?</p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                 {interestOptions.map((interest) => (
                   <button
@@ -397,7 +420,7 @@ const Recruitment: React.FC = () => {
           </div>
 
           {/* Submit Button */}
-                      <div className="mt-8 text-center">
+          <div className="mt-8 text-center">
             <button
               onClick={handleSubmit}
               className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center mx-auto"

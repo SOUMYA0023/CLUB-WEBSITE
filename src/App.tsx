@@ -10,11 +10,12 @@ import JoinUs from './components/JoinUs';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Recruitment from './pages/Recruitment';
+import { ToastContainer} from 'react-toastify';
 
 function App() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-      
+      <ToastContainer></ToastContainer>
       <Routes>
         <Route
           path="/"
